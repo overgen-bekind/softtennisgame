@@ -1181,10 +1181,12 @@ function expCSV(isEnd){
     ['okuP',M.players.okuP],['okuQ',M.players.okuQ],
     ['maeP',M.players.maeP],['maeQ',M.players.maeQ],[],
   ];
-  const hd=['本目','ゲーム','ポイント','1stFault','打X(m)','打Y(m)','着X(m)','着Y(m)','決め手','結果','結果内容','結果内容2'];
+  const hd=['本目','ゲーム','ポイント','1stFault','打X(m)','打Y(m)','着X(m)','着Y(m)','着X_neg','着Y_neg','決め手','結果','結果内容','結果内容2'];
   const rows=M.points.map(p=>[
     p.id,p.gameNum,p.ptInGame,p.firstServeFault?'×':'',
     p.hitX,p.hitY,p.landX,p.landY,
+      p.hitX,  p.hitY  ? +(p.hitY  * -1).toFixed(2) : '',
+      p.landX, p.landY ? +(p.landY * -1).toFixed(2) : '',   
     pn(p.resultPlayer)||'',p.result==='win'?'得点':'失点',
     p.shotType||'',p.missType||'',
   ]);
